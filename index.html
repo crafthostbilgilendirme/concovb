@@ -9,9 +9,9 @@
 
     <div class="container">
 
-        <h1 class="baslik">Server Bilgilendirme Sitesi</h1>
+        <h1 class="baslik anim">Server Bilgilendirme Sitesi</h1>
 
-        <p class="aciklama">
+        <p class="aciklama anim">
             Bu bir bilgilendirme sitesidir. Server paketlerine aşağıdaki linkten ulaşabilirsiniz.
         </p>
 
@@ -19,7 +19,7 @@
             Paketlere Git
         </a>
 
-        <div class="kart">
+        <div class="kart anim">
             <h2>Hızlı ve Güvenli</h2>
             <p>
                 Serverlerimiz her zaman hızlı ve güvenlidir.
@@ -27,7 +27,7 @@
             </p>
         </div>
 
-        <div class="kart">
+        <div class="kart anim">
             <h2>DDOS Koruması</h2>
             <p>
                 Güvenlik için Mikrotik ve Royale sistemleri kullanılmaktadır.
@@ -36,6 +36,26 @@
         </div>
 
     </div>
+
+    <script>
+        // Scroll animasyonu
+        const animler = document.querySelectorAll(".anim");
+
+        function kontrolEt() {
+            const tetik = window.innerHeight - 50;
+
+            animler.forEach(el => {
+                const ust = el.getBoundingClientRect().top;
+
+                if (ust < tetik) {
+                    el.classList.add("goster");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", kontrolEt);
+        window.addEventListener("load", kontrolEt);
+    </script>
 
 </body>
 </html>
