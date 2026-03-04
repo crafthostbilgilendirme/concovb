@@ -3,285 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Film Önerisi</title>
-
+<title>Hosting Bilgilendirme</title>
 <style>
-body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg,#0d1117,#111827,#0d1117);
-    color:white;
+/* Genel stil */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #162447);
+    color: #f0f0f0;
 }
 
-/* Başlık */
-.title{
-    text-align:center;
-    margin-top:40px;
-    font-size:45px;
-    font-weight:bold;
-    letter-spacing:2px;
-    background: linear-gradient(90deg,#58a6ff,#ff7b72,#58a6ff);
-    background-size:200%;
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation: shine 5s linear infinite;
+/* Header */
+header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(90deg, #e94560, #0f3460);
+    animation: gradientBG 5s ease infinite alternate;
 }
 
-@keyframes shine{
-    0%{background-position:0%}
-    100%{background-position:200%}
+header h1 {
+    font-size: 3rem;
+    margin: 0 0 10px 0;
 }
 
-.container{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:25px;
-    width:92%;
-    margin:50px auto;
+header p {
+    font-size: 1.3rem;
+    color: #ffd700;
 }
 
-.card{
-    background:#161b22;
-    border-radius:15px;
-    overflow:hidden;
-    transition:0.4s;
-    box-shadow:0 0 15px rgba(0,0,0,0.5);
-    border:1px solid #30363d;
+/* Animasyonlu gradient */
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 
-.card:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 25px #58a6ff;
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(10, 10, 30, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
-label{
-    display:block;
-    padding:20px;
-    font-size:22px;
-    cursor:pointer;
-    text-align:center;
-    font-weight:bold;
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-left: 5px solid #e94560;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-input{
-    display:none;
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(233, 69, 96, 0.5);
 }
 
-.content{
-    max-height:0;
-    overflow:auto;
-    transition:max-height 0.6s ease, padding 0.6s ease;
-    background:#0d1117;
+h2 {
+    margin-top: 0;
+    color: #ffd700;
 }
 
-input:checked ~ .content{
-    max-height:600px;
-    padding:15px;
+p {
+    line-height: 1.6;
 }
 
-.content p{
-    margin:5px 0;
-    font-size:13px;
-    padding:4px;
-    border-bottom:1px solid #21262d;
-    transition:0.3s;
+/* Button stil */
+button {
+    background: #e94560;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.content p:hover{
-    color:#58a6ff;
-    padding-left:8px;
+button:hover {
+    background: #ff2e63;
+    transform: scale(1.05);
 }
 
 /* Footer */
-footer{
-    text-align:center;
-    padding:30px;
-    background:#161b22;
-    border-top:1px solid #30363d;
-    margin-top:40px;
-    font-size:14px;
-    color:#8b949e;
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #aaa;
+    font-size: 0.9rem;
 }
 
-@media(max-width:1000px){
-    .container{
-        grid-template-columns:repeat(2,1fr);
-    }
+/* Kod gibi görünmeyen ama modern efekti veren animasyon */
+.blink {
+    display: inline-block;
+    animation: blinkAnim 1s infinite;
 }
 
-@media(max-width:600px){
-    .container{
-        grid-template-columns:1fr;
-    }
+@keyframes blinkAnim {
+    0%, 50%, 100% {opacity: 1;}
+    25%, 75% {opacity: 0.3;}
 }
 </style>
 </head>
-
 <body>
+<header>
+    <h1>Hosting Bilgilendirme</h1>
+    <p>DDOS korumalı, güvenli ve hızlı</p>
+</header>
 
-<div class="title">🎬 Film Önerisi</div>
+<main>
+    <section>
+        <h2>Hız ve Güvenlik</h2>
+        <p>Sunucularımız en yüksek performans için optimize edilmiştir ve gelişmiş DDOS koruması ile hizmet vermektedir.</p>
+    </section>
 
-<div class="container">
+    <section>
+        <h2>Kullanım Kolaylığı</h2>
+        <p>Panelimiz basit ve kullanıcı dostudur. Tüm hosting işlemlerinizi kolayca yönetebilirsiniz.</p>
+    </section>
 
-<!-- AKSİYON -->
-<div class="card">
-<input type="checkbox" id="aksiyon">
-<label for="aksiyon">💥 Aksiyon</label>
-<div class="content">
-<p>Mad Max: Fury Road</p>
-<p>John Wick</p>
-<p>The Dark Knight</p>
-<p>Gladiator</p>
-<p>Avengers: Endgame</p>
-<p>Inception</p>
-<p>Die Hard</p>
-<p>The Matrix</p>
-<p>Top Gun: Maverick</p>
-<p>Mission Impossible</p>
-<p>Black Panther</p>
-<p>Captain America</p>
-<p>Fast & Furious</p>
-<p>Extraction</p>
-<p>Tenet</p>
-<p>300</p>
-<p>The Equalizer</p>
-<p>Edge of Tomorrow</p>
-<p>Casino Royale</p>
-<p>Transformers</p>
-<p>Rambo</p>
-<p>The Raid</p>
-<p>Terminator 2</p>
-<p>Skyfall</p>
-<p>Deadpool</p>
-<p>Logan</p>
-<p>Spider-Man: No Way Home</p>
-<p>Iron Man</p>
-<p>Hulk</p>
-<p>Thor</p>
-<p>Justice League</p>
-<p>Wonder Woman</p>
-<p>Aquaman</p>
-<p>Man of Steel</p>
-<p>Bad Boys</p>
-<p>Rush Hour</p>
-<p>The Expendables</p>
-<p>Fury</p>
-<p>American Sniper</p>
-<p>World War Z</p>
-<p>Upgrade</p>
-<p>Dredd</p>
-<p>The Transporter</p>
-<p>Kingsman</p>
-<p>Bloodshot</p>
-<p>Hardcore Henry</p>
-<p>Oblivion</p>
-<p>I Am Legend</p>
-<p>Pacific Rim</p>
-<p>Godzilla</p>
-</div>
-</div>
+    <section>
+        <h2>7/24 Destek</h2>
+        <p>Her zaman yanınızdayız! Profesyonel destek ekibimizle sorularınıza anında cevap alabilirsiniz.</p>
+    </section>
 
-<!-- MACERA -->
-<div class="card">
-<input type="checkbox" id="macera">
-<label for="macera">🗺️ Macera</label>
-<div class="content">
-<p>Interstellar</p>
-<p>The Lord of the Rings</p>
-<p>Pirates of the Caribbean</p>
-<p>Jurassic Park</p>
-<p>Indiana Jones</p>
-<p>The Hobbit</p>
-<p>Avatar</p>
-<p>Life of Pi</p>
-<p>The Revenant</p>
-<p>Jumanji</p>
-<p>King Kong</p>
-<p>The Maze Runner</p>
-<p>Harry Potter</p>
-<p>Star Wars</p>
-<p>Uncharted</p>
-<p>The Mummy</p>
-<p>Journey 2</p>
-<p>Doctor Strange</p>
-<p>Chronicles of Narnia</p>
-<p>Paddington</p>
-<p>The Goonies</p>
-<p>Cast Away</p>
-<p>The Jungle Book</p>
-<p>Treasure Planet</p>
-<p>National Treasure</p>
-<p>Waterworld</p>
-<p>The Martian</p>
-<p>Prince of Persia</p>
-<p>Pan</p>
-<p>Hook</p>
-<p>Everest</p>
-<p>The Lost City</p>
-<p>The Secret Life of Walter Mitty</p>
-<p>Ad Astra</p>
-<p>Tomorrowland</p>
-<p>A Wrinkle in Time</p>
-<p>Peter Pan</p>
-<p>Ready Player One</p>
-<p>Into the Wild</p>
-<p>The Mummy Returns</p>
-<p>The Golden Compass</p>
-<p>Atlantis</p>
-<p>Journey to the Center of the Earth</p>
-<p>Ben-Hur</p>
-<p>Robin Hood</p>
-<p>The Three Musketeers</p>
-<p>Clash of the Titans</p>
-<p>Gods of Egypt</p>
-<p>Troy</p>
-<p>300: Rise of an Empire</p>
-</div>
-</div>
-
-<!-- KORKU -->
-<div class="card">
-<input type="checkbox" id="korku">
-<label for="korku">👻 Korku</label>
-<div class="content">
-<!-- 50 korku filmi -->
-<p>The Conjuring</p><p>Insidious</p><p>Hereditary</p><p>The Nun</p><p>It</p>
-<p>Sinister</p><p>Annabelle</p><p>The Exorcist</p><p>A Quiet Place</p><p>The Ring</p>
-<p>Scream</p><p>Paranormal Activity</p><p>The Grudge</p><p>Us</p><p>Get Out</p>
-<p>The Shining</p><p>Lights Out</p><p>Smile</p><p>Bird Box</p><p>The Babadook</p>
-<p>Halloween</p><p>Friday the 13th</p><p>Nightmare on Elm Street</p><p>The Descent</p><p>The Others</p>
-<p>Jeepers Creepers</p><p>The Mist</p><p>Mama</p><p>Orphan</p><p>Drag Me to Hell</p>
-<p>The Visit</p><p>Host</p><p>The Cabin in the Woods</p><p>Rec</p><p>The Hills Have Eyes</p>
-<p>28 Days Later</p><p>World War Z</p><p>The Invisible Man</p><p>The Black Phone</p><p>It Follows</p>
-<p>The Witch</p><p>Gerald's Game</p><p>Doctor Sleep</p><p>Pet Sematary</p><p>Poltergeist</p>
-<p>The Omen</p><p>The Ritual</p><p>Truth or Dare</p><p>The Possession</p><p>The Boy</p>
-</div>
-</div>
-
-<!-- KOMEDİ -->
-<div class="card">
-<input type="checkbox" id="komedi">
-<label for="komedi">😂 Komedi</label>
-<div class="content">
-<!-- 50 komedi filmi -->
-<p>The Hangover</p><p>Superbad</p><p>Deadpool</p><p>Home Alone</p><p>Mr. Bean</p>
-<p>Yes Man</p><p>The Mask</p><p>Rush Hour</p><p>Central Intelligence</p><p>Step Brothers</p>
-<p>Grown Ups</p><p>Dumb and Dumber</p><p>We're the Millers</p><p>Scary Movie</p><p>21 Jump Street</p>
-<p>Johnny English</p><p>Bruce Almighty</p><p>White Chicks</p><p>Paul</p><p>Free Guy</p>
-<p>Meet the Parents</p><p>Neighbors</p><p>The Dictator</p><p>Ride Along</p><p>Due Date</p>
-<p>The Internship</p><p>Zoolander</p><p>Get Smart</p><p>Spy</p><p>The Proposal</p>
-<p>Pitch Perfect</p><p>Hot Fuzz</p><p>Super Troopers</p><p>Click</p><p>Big Daddy</p>
-<p>Dr. Dolittle</p><p>Jumanji</p><p>Little Man</p><p>Coming to America</p><p>The Nutty Professor</p>
-<p>Shaun of the Dead</p><p>The Heat</p><p>Ted</p><p>Night at the Museum</p><p>Shrek</p>
-<p>Kung Fu Panda</p><p>Ice Age</p><p>Despicable Me</p><p>The Croods</p><p>Minions</p>
-</div>
-</div>
-
-</div>
+    <section style="text-align:center;">
+        <button>Hemen Başla</button>
+    </section>
+</main>
 
 <footer>
-© Telif hakkı 2026 xwx aittir. Tüm hakları saklıdır.
+    © 2026 Hosting Bilgilendirme Sitesi
 </footer>
-
 </body>
 </html>
