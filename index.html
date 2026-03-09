@@ -2,219 +2,332 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>IP Analiz XwX</title>
+<title>MC Control Panel</title>
+
 <style>
-body {
-    margin:0;
-    padding:0;
-    font-family: Arial, sans-serif;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#1e3a8a; /* Düz mavi arka plan */
-    color:white;
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:linear-gradient(135deg,#1e3a8a,#2563eb);
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
-.main-container {
-    text-align:center;
-    max-width:400px;
-    width:90%;
+
+
+.panel{
+width:550px;
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:15px;
+backdrop-filter:blur(10px);
+text-align:center;
 }
 
-.logo {
-    width:120px;
-    margin-bottom:20px;
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
+
+
+h1{
+color:#93c5fd;
+text-shadow:0 0 15px #60a5fa;
 }
 
-h1 {
-    font-size:32px;
-    margin-bottom:20px;
-    color:white;
+input{
+width:90%;
+padding:10px;
+margin:6px;
+border:none;
+border-radius:8px;
+background:rgba(255,255,255,0.2);
+color:white;
 }
 
-input {
-    width:80%;
-    padding:10px;
-    margin:10px 0;
-    border-radius:8px;
-    border:none;
-    outline:none;
-    font-size:16px;
-    background: rgba(255,255,255,0.1);
-    color:white;
+button{
+padding:10px 20px;
+margin:6px;
+border:none;
+border-radius:8px;
+background:#3b82f6;
+color:white;
+font-weight:bold;
+cursor:pointer;
 }
 
-input::placeholder { color:#d0f0ff; }
-
-button {
-    padding:10px 20px;
-    margin-top:10px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    background:#2563eb;
-    color:white;
-    font-weight:bold;
-    transition:0.3s;
+button:hover{
+background:#1d4ed8;
+transform:scale(1.05);
 }
 
-button:hover {
-    background:#1d4ed8;
+.menu button{
+width:200px;
 }
 
-.underline-link {
-    text-decoration:underline;
-    cursor:pointer;
-    color:#93c5fd;
-    font-weight:bold;
+.box{
+margin-top:15px;
+padding:10px;
+border:1px solid rgba(255,255,255,0.2);
+border-radius:10px;
 }
 
-#logoutBtn {
-    position:fixed;
-    left:20px;
-    top:20px;
-    background:#ef4444;
-    color:white;
-    border:none;
-    padding:8px 12px;
-    border-radius:6px;
-    cursor:pointer;
-    display:none;
+.status{
+color:#bfdbfe;
+margin-bottom:10px;
 }
 
-#message {
-    position:fixed;
-    top:20px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#2563eb;
-    color:white;
-    padding:10px 20px;
-    border-radius:8px;
-    opacity:0;
-    transition: all 0.5s ease;
-    font-weight:bold;
-}
-
-.info {
-    margin:8px 0;
-    font-size:16px;
-}
 </style>
 </head>
+
 <body>
 
-<div id="message"></div>
-<button id="logoutBtn" onclick="logout()">Çıkış Yap</button>
+<div class="panel">
 
-<div class="main-container">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mastercard-logo.png/240px-Mastercard-logo.png" class="logo">
+<h1>Minecraft Panel</h1>
 
-    <h1>IP Bilgi Sorgulama</h1>
 
-    <div id="loginBox">
-        <input id="username" placeholder="Kullanıcı Adı">
-        <input id="password" type="password" placeholder="Şifre">
-        <button onclick="login()">Giriş Yap</button>
-        <p>Hesabınız yok mu? <span class="underline-link" onclick="showRegister()">Kayıt Ol</span></p>
-    </div>
 
-    <div id="registerBox" style="display:none;">
-        <input id="newUser" placeholder="Kullanıcı Adı">
-        <input id="newPass" type="password" placeholder="Şifre">
-        <button onclick="register()">Kayıt Ol</button>
-        <p>Zaten hesabınız var mı? <span class="underline-link" onclick="showLogin()">Giriş Yap</span></p>
-    </div>
+<div id="login">
 
-    <div id="profile" style="display:none; margin-top:20px;">
-        <h2 id="welcome"></h2>
-        <input id="ipInput" placeholder="IP adresi gir">
-        <button onclick="searchIP()">Ara</button>
-        <div class="info">IP: <span id="ip">-</span></div>
-        <div class="info">Ülke: <span id="country">-</span></div>
-        <div class="info">Şehir: <span id="city">-</span></div>
-        <div class="info">Bölge: <span id="region">-</span></div>
-        <div class="info">Koordinat: <span id="coord">-</span></div>
-        <div class="info">İnternet Sağlayıcısı: <span id="isp">-</span></div>
-    </div>
+<input id="user" placeholder="Kullanıcı adı">
+<input id="pass" type="password" placeholder="Şifre">
+
+<br>
+
+<button onclick="login()">Giriş</button>
+<button onclick="register()">Kayıt</button>
+
+</div>
+
+
+
+<div id="menu" style="display:none">
+
+<h2 id="welcome"></h2>
+
+<div class="menu">
+
+<button onclick="openBots()">Minecraft Bot Gönderme</button>
+
+<button onclick="openIP()">IP Analiz</button>
+
+</div>
+
+</div>
+
+
+
+<div id="bots" style="display:none">
+
+<h2>Bot Panel</h2>
+
+<div class="status" id="serverStatus"></div>
+
+<input id="serverIP" placeholder="Sunucu IP">
+
+<button onclick="checkServer()">Server Status</button>
+
+<div class="box">
+
+<h3>Bot Panel 1</h3>
+
+<input id="botCount1" placeholder="Bot sayısı">
+
+<button onclick="sendBots1()">Bot Gönder</button>
+
+<div id="botResult1"></div>
+
+</div>
+
+<div class="box">
+
+<h3>Bot Panel 2</h3>
+
+<input id="botCount2" placeholder="Bot sayısı">
+
+<button onclick="sendBots2()">Bot Gönder</button>
+
+<div id="botResult2"></div>
+
+</div>
+
+<button onclick="back()">Geri</button>
+
+</div>
+
+
+
+<div id="ipPage" style="display:none">
+
+<h2>IP Analiz</h2>
+
+<input id="ipInput" placeholder="IP adresi">
+
+<button onclick="ipLookup()">Sorgula</button>
+
+<div id="ipInfo"></div>
+
+<button onclick="back()">Geri</button>
+
+</div>
 
 </div>
 
 <script>
-const defaultUser = "121212";
-const defaultPass = "121212";
 
-window.onload = function(){
-    if(localStorage.getItem("loggedIn")==="true"){ showProfile(); } 
-    else{ showLogin(); }
-}
 
-function showMessage(text){
-    const msg = document.getElementById("message");
-    msg.innerText=text;
-    msg.style.opacity="1";
-    setTimeout(()=>{ msg.style.opacity="0"; },3000);
+
+function register(){
+
+let u=user.value
+let p=pass.value
+
+let db=JSON.parse(localStorage.getItem("users"))||[]
+
+db.push({u,p})
+
+localStorage.setItem("users",JSON.stringify(db))
+
+alert("Kayıt tamam")
+
 }
 
 function login(){
-    if(document.getElementById("username").value===defaultUser &&
-       document.getElementById("password").value===defaultPass){
-        localStorage.setItem("loggedIn","true"); showProfile(); showMessage("Giriş Başarılı");
-    } else { showMessage("Hatalı"); }
+
+let u=user.value
+let p=pass.value
+
+let db=JSON.parse(localStorage.getItem("users"))||[]
+
+let found=db.find(x=>x.u==u && x.p==p)
+
+if(found){
+
+login.style.display="none"
+menu.style.display="block"
+
+welcome.innerText="Merhaba "+u
+
+}else{
+
+alert("Hatalı giriş")
+
 }
 
-function register(){ showMessage("Kayıt Başarılı"); }
-
-function logout(){ localStorage.setItem("loggedIn","false"); showLogin(); showMessage("Çıkış Yapıldı"); }
-
-function showProfile(){
-    document.getElementById("loginBox").style.display="none";
-    document.getElementById("registerBox").style.display="none";
-    document.getElementById("profile").style.display="block";
-    document.getElementById("logoutBtn").style.display="block";
-    document.getElementById("welcome").innerText="Hoşgeldin "+defaultUser;
 }
 
-function showLogin(){
-    document.getElementById("loginBox").style.display="block";
-    document.getElementById("registerBox").style.display="none";
-    document.getElementById("profile").style.display="none";
-    document.getElementById("logoutBtn").style.display="none";
+
+
+function openBots(){
+
+menu.style.display="none"
+bots.style.display="block"
+
 }
 
-function showRegister(){
-    document.getElementById("loginBox").style.display="none";
-    document.getElementById("registerBox").style.display="block";
-    document.getElementById("profile").style.display="none";
+function openIP(){
+
+menu.style.display="none"
+ipPage.style.display="block"
+
 }
 
-async function getIP(){
-    let res=await fetch("https://ipapi.co/json/");
-    let data=await res.json();
-    document.getElementById("ip").innerText=data.ip;
-    document.getElementById("country").innerText=data.country_name;
-    document.getElementById("city").innerText=data.city;
-    document.getElementById("region").innerText=data.region;
-    document.getElementById("coord").innerText=data.latitude+" , "+data.longitude;
-    document.getElementById("isp").innerText=data.org;
+function back(){
+
+bots.style.display="none"
+ipPage.style.display="none"
+menu.style.display="block"
+
 }
 
-async function searchIP(){
-    let ip=document.getElementById("ipInput").value;
-    if(ip===""){ getIP(); return; }
-    let res=await fetch("https://ipapi.co/"+ip+"/json/");
-    let data=await res.json();
-    document.getElementById("ip").innerText=data.ip;
-    document.getElementById("country").innerText=data.country_name;
-    document.getElementById("city").innerText=data.city;
-    document.getElementById("region").innerText=data.region;
-    document.getElementById("coord").innerText=data.latitude+" , "+data.longitude;
-    document.getElementById("isp").innerText=data.org;
+
+
+async function checkServer(){
+
+let ip=serverIP.value
+
+let res=await fetch("https://api.mcsrvstat.us/2/"+ip)
+
+let data=await res.json()
+
+serverStatus.innerHTML=
+
+"Online: "+data.online+
+"<br>Oyuncular: "+(data.players?data.players.online:0)
+
 }
+
+
+
+function sendBots1(){
+
+let count=botCount1.value
+let i=0
+
+let interval=setInterval(()=>{
+
+i++
+
+botResult1.innerText="Gönderilen bot "+i+"/"+count
+
+if(i>=count){
+
+clearInterval(interval)
+
+}
+
+},200)
+
+}
+
+function sendBots2(){
+
+let count=botCount2.value
+let i=0
+
+let interval=setInterval(()=>{
+
+i++
+
+botResult2.innerText="Gönderilen bot "+i+"/"+count
+
+if(i>=count){
+
+clearInterval(interval)
+
+}
+
+},200)
+
+}
+
+
+
+async function ipLookup(){
+
+let ip=ipInput.value
+
+let res=await fetch("https://ipapi.co/"+ip+"/json/")
+
+let data=await res.json()
+
+ipInfo.innerHTML=
+
+`
+IP: ${data.ip}<br>
+Ülke: ${data.country_name}<br>
+Şehir: ${data.city}<br>
+Bölge: ${data.region}<br>
+Posta kodu: ${data.postal}<br>
+Saat dilimi: ${data.timezone}<br>
+ISP: ${data.org}<br>
+Koordinat: ${data.latitude}, ${data.longitude}
+`
+
+}
+
 </script>
+
 </body>
 </html>
