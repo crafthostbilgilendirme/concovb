@@ -16,16 +16,66 @@ body {
   font-family:'Segoe UI', sans-serif;
   background: var(--bg-dark);
   color:#fff;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
 }
-
 
 header{
   text-align:center;
-  padding:60px 20px;
+  padding:40px 20px;
   background: linear-gradient(90deg,var(--primary),var(--accent));
-  animation:fadeIn 1s ease;
 }
 
+main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+h1.bigTitle{
+  font-size:60px;
+  margin-bottom:20px;
+}
+
+p.info{
+  font-size:24px;
+  max-width:800px;
+  line-height:1.5;
+  margin-bottom:20px;
+}
+
+button.moreBtn{
+  background: linear-gradient(45deg,var(--primary),var(--accent));
+  color:#fff;
+  border:none;
+  padding:12px 25px;
+  border-radius:25px;
+  cursor:pointer;
+  transition: all 0.3s;
+  font-size:18px;
+}
+button.moreBtn:hover{
+  transform:scale(1.1);
+}
+
+section#features{
+  width:100%;
+  max-width:1000px;
+  margin:40px auto;
+  padding:20px;
+}
+
+section#features div{
+  margin-bottom:20px;
+  background: rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:12px;
+}
 
 .menu{
   position:fixed;
@@ -46,7 +96,6 @@ header{
   border-radius:10px;
   display:none;
   overflow:hidden;
-  animation:fadeIn 0.3s;
 }
 .dropdown div{
   padding:10px 20px;
@@ -58,89 +107,61 @@ header{
 }
 
 
-main{
-  max-width:1000px;
-  margin:40px auto;
-  padding:20px;
-}
-section{
-  margin-bottom:20px;
-  padding:20px;
-  background: rgba(255,255,255,0.05);
-  border-radius:12px;
-  transition: all 0.3s;
-  animation:fadeUp 0.8s ease;
-}
-section:hover{
-  transform:translateY(-5px) scale(1.02);
-}
-
-button{
-  background: linear-gradient(45deg,var(--primary),var(--accent));
-  color:#fff;
-  border:none;
-  padding:12px 30px;
-  border-radius:25px;
-  cursor:pointer;
-  transition: all 0.3s;
-}
-button:hover{
-  transform:scale(1.1);
-}
-
-
-#authBox{
+#chatIcon{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.85);
+  bottom:20px;
+  right:20px;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background: var(--primary);
   display:flex;
   justify-content:center;
   align-items:center;
-  z-index:9999;
-}
-.authPanel{
-  background:#111;
-  padding:30px;
-  border-radius:20px;
-  text-align:center;
-  width:300px;
-  animation:zoomIn 0.5s ease;
-}
-.authPanel input{
-  width:90%;
-  padding:10px;
-  margin:10px;
-  border-radius:10px;
-  border:none;
-}
-#switchText{
-  margin-top:10px;
-  text-decoration:underline;
   cursor:pointer;
-  color:#4a90e2;
+  font-size:36px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.3);
 }
 
+#chatBox{
+  position:fixed;
+  bottom:100px;
+  right:20px;
+  width:300px;
+  background:#111;
+  border-radius:20px;
+  display:none;
+  flex-direction:column;
+  padding:15px;
+  box-shadow:0 8px 16px rgba(0,0,0,0.3);
+}
 
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
+#chatBox p.botMsg{
+  background: #222;
+  padding:12px;
+  border-radius:12px;
+  margin:5px 0;
+  font-size:16px;
 }
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(20px);}
-  to{opacity:1; transform:translateY(0);}
+
+#chatBox button.optionBtn{
+  background: var(--accent);
+  color:#fff;
+  border:none;
+  padding:10px 15px;
+  border-radius:12px;
+  cursor:pointer;
+  margin-top:10px;
+  font-size:16px;
+  transition: all 0.3s;
 }
-@keyframes zoomIn{
-  from{transform:scale(0.7); opacity:0;}
-  to{transform:scale(1); opacity:1;}
+#chatBox button.optionBtn:hover{
+  transform:scale(1.05);
 }
 </style>
 </head>
 
 <body>
-
 
 <div class="menu" onclick="toggleMenu()">⋮</div>
 <div class="dropdown" id="menuBox">
@@ -150,90 +171,64 @@ button:hover{
 
 <header>
 <h1>AlacaSunucum 🗄️</h1>
-<p>DDOS korumalı, güvenli ve hızlı</p>
+<p>DDOS korumalı, güvenli ve hızlı sunucular</p>
 </header>
 
 <main>
-
-<section>
-<h2>⚡ Hızlı ve Güvenlik</h2>
-<p>Sunucularımız en yüksek performanslıdır.</p>
-</section>
-
-<section>
-<h2>🛡️ DDOS Koruması</h2>
-<p>Güçlü altyapı ile saldırılara karşı koruma.</p>
-</section>
-
-<section>
-<h2>💾 Kolay Yönetim</h2>
-<p>Panel üzerinden hızlı kontrol ve yönetim.</p>
-</section>
-
-<section style="text-align:center;">
-<button onclick="goDiscord()">Hemen Başla</button>
-</section>
-
+  <h1 class="bigTitle">AlacaSunucum</h1>
+  <p class="info">
+    AlacaSunucum güvenli, hızlı ve güçlü altyapısı ile sunucularınız için en iyi çözümü sunar.
+    Kolay yönetim ve DDOS koruması ile tüm ihtiyaçlarınızı tek platformda karşılayabilirsiniz.
+  </p>
+  <button class="moreBtn" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Daha Fazla</button>
 </main>
 
-
-<div id="authBox">
-  <div class="authPanel">
-    <h2 id="authTitle">Giriş Yap</h2>
-
-    <input id="user" placeholder="Kullanıcı adı">
-    <input id="pass" type="password" placeholder="Şifre">
-
-    <button onclick="auth()">Giriş Yap</button>
-
-    <div id="switchText" onclick="switchMode()">Kayıt Ol</div>
+<section id="features">
+  <div>
+    <h2>⚡ Hızlı ve Güvenlik</h2>
+    <p>Sunucularımız en yüksek performanslıdır.</p>
   </div>
+  <div>
+    <h2>🛡️ DDOS Koruması</h2>
+    <p>Güçlü altyapı ile saldırılara karşı koruma.</p>
+  </div>
+  <div>
+    <h2>💾 Kolay Yönetim</h2>
+    <p>Panel üzerinden hızlı kontrol ve yönetim.</p>
+  </div>
+</section>
+
+
+<div id="chatIcon" onclick="toggleChat()">💬</div>
+<div id="chatBox">
+  <p class="botMsg">Merhaba, nasıl yardımcı olabilirim?</p>
+  <button class="optionBtn" onclick="openDiscord()">Yardım</button>
 </div>
 
 <script>
-let isLogin=true;
-
-function switchMode(){
-  isLogin=!isLogin;
-  document.getElementById("authTitle").innerText = isLogin ? "Giriş Yap" : "Kayıt Ol";
-  document.querySelector("#authBox button").innerText = isLogin ? "Giriş Yap" : "Kayıt Ol";
-  document.getElementById("switchText").innerText = isLogin ? "Kayıt Ol" : "Giriş Yap";
-}
-
-function auth(){
-  let u=document.getElementById("user").value;
-  let p=document.getElementById("pass").value;
-
-  if(!u||!p) return alert("Boş bırakma!");
-
-  if(isLogin){
-    if(localStorage.getItem(u)==p){
-      alert("Başarıyla giriş yapıldı!");
-      document.getElementById("authBox").style.display="none";
-    } else alert("Hatalı giriş!");
-  } else {
-    if(localStorage.getItem(u)) return alert("Bu kullanıcı var!");
-    localStorage.setItem(u,p);
-    alert("Kayıt olundu!");
-    switchMode();
-  }
-}
-
 function toggleMenu(){
   let m=document.getElementById("menuBox");
   m.style.display = m.style.display=="block" ? "none" : "block";
 }
 
 function goDiscord(){
-  window.location.href="https://discord.gg/alacahost";
+  window.open("https://discord.gg/alacahost", "_blank");
 }
+
 function goSite(){
   window.location.href="https://dogansunucum.com/";
 }
-</script>
 
-</body>
-</html>
+
+function toggleChat(){
+  let chat=document.getElementById("chatBox");
+  chat.style.display = chat.style.display=="flex" ? "none" : "flex";
+}
+
+function openDiscord(){
+  window.open("https://discord.gg/alacahost", "_blank");
+}
+</script>
 
 </body>
 </html>
