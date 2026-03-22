@@ -7,202 +7,251 @@
 
 <style>
 :root {
-  --bg-dark: #1e3c72;
-  --primary: #4a90e2;
-  --accent: #2a5298;
+  --bg: #0f2027;
+  --text:#fff;
+  --primary:#4facfe;
+  --accent:#00c6ff;
 }
-body {
+
+.light{
+  --bg:#f5f5f5;
+  --text:#111;
+}
+
+body{
   margin:0;
   font-family:'Segoe UI', sans-serif;
-  background: var(--bg-dark);
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  min-height:100vh;
+  background: var(--bg);
+  color:var(--text);
+  transition:0.3s;
 }
 
 header{
   text-align:center;
-  padding:40px 20px;
-  background: linear-gradient(90deg,var(--primary),var(--accent));
+  padding:60px 20px;
 }
 
-main{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:20px;
-}
-
-h1.bigTitle{
+.bigTitle{
   font-size:60px;
-  margin-bottom:20px;
-}
-
-p.info{
-  font-size:24px;
-  max-width:800px;
-  line-height:1.5;
-  margin-bottom:20px;
-}
-
-button.moreBtn{
   background: linear-gradient(45deg,var(--primary),var(--accent));
-  color:#fff;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.btn{
+  background: linear-gradient(45deg,var(--primary),var(--accent));
   border:none;
   padding:12px 25px;
   border-radius:25px;
+  color:#fff;
   cursor:pointer;
-  transition: all 0.3s;
-  font-size:18px;
+  margin-top:15px;
+  transition:0.2s;
 }
-button.moreBtn:hover{
-  transform:scale(1.1);
-}
+.btn:hover{ transform:scale(1.1); }
+.btn:active{ transform:scale(0.95); }
 
-section#features{
-  width:100%;
-  max-width:1000px;
-  margin:40px auto;
+#features, #pricing{
+  max-width:1100px;
+  margin:50px auto;
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
   padding:20px;
 }
 
-section#features div{
-  margin-bottom:20px;
+.card{
   background: rgba(255,255,255,0.05);
-  padding:20px;
-  border-radius:12px;
+  padding:25px;
+  border-radius:15px;
+  transition:0.4s;
+  opacity:0;
+  transform:translateY(40px);
+}
+.card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+.card:hover{
+  transform:translateY(-10px);
+}
+
+.price{
+  font-size:28px;
+  margin:10px 0;
+  color:var(--accent);
 }
 
 .menu{
   position:fixed;
   top:15px;
   right:20px;
-  font-size:28px;
+  font-size:26px;
   cursor:pointer;
-  transition: transform 0.3s;
 }
-.menu:hover{
-  transform:scale(1.2);
-}
+
 .dropdown{
   position:fixed;
   top:50px;
   right:20px;
   background:#111;
-  border-radius:10px;
   display:none;
-  overflow:hidden;
+  border-radius:10px;
 }
 .dropdown div{
   padding:10px 20px;
   cursor:pointer;
-  transition: background 0.2s;
 }
-.dropdown div:hover{
-  background:#333;
-}
-
+.dropdown div:hover{ background:#333; }
 
 #chatIcon{
   position:fixed;
   bottom:20px;
   right:20px;
-  width:70px;
-  height:70px;
+  width:65px;
+  height:65px;
   border-radius:50%;
   background: var(--primary);
   display:flex;
   justify-content:center;
   align-items:center;
   cursor:pointer;
-  font-size:36px;
-  box-shadow:0 4px 8px rgba(0,0,0,0.3);
 }
 
 #chatBox{
   position:fixed;
   bottom:100px;
   right:20px;
-  width:300px;
+  width:280px;
   background:#111;
-  border-radius:20px;
+  border-radius:15px;
   display:none;
   flex-direction:column;
   padding:15px;
-  box-shadow:0 8px 16px rgba(0,0,0,0.3);
 }
 
-#chatBox p.botMsg{
-  background: #222;
-  padding:12px;
-  border-radius:12px;
-  margin:5px 0;
-  font-size:16px;
+.botMsg{
+  background:#222;
+  padding:10px;
+  border-radius:10px;
 }
 
-#chatBox button.optionBtn{
-  background: var(--accent);
-  color:#fff;
-  border:none;
-  padding:10px 15px;
-  border-radius:12px;
-  cursor:pointer;
+.optionBtn{
   margin-top:10px;
-  font-size:16px;
-  transition: all 0.3s;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  background:var(--accent);
+  color:#fff;
+  cursor:pointer;
 }
-#chatBox button.optionBtn:hover{
-  transform:scale(1.05);
+
+.toggleTheme{
+  position:fixed;
+  left:20px;
+  top:20px;
+  cursor:pointer;
+  font-size:20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="menu" onclick="toggleMenu()">⋮</div>
+<div class="toggleTheme" onclick="toggleTheme()">🌙</div>
+
+<div class="menu" onclick="toggleMenu()">☰</div>
 <div class="dropdown" id="menuBox">
   <div onclick="goDiscord()">Discord</div>
   <div onclick="goSite()">Web Site</div>
 </div>
 
 <header>
-<h1>AlacaSunucum 🗄️</h1>
-<p>DDOS korumalı, güvenli ve hızlı sunucular</p>
+  <h1>AlacaSunucum 🗄️</h1>
+  <p>Profesyonel Hosting Hizmeti</p>
 </header>
 
-<main>
-  <h1 class="bigTitle">AlacaSunucum</h1>
-  <p class="info">
-    AlacaSunucum güvenli, hızlı ve güçlü altyapısı ile sunucularınız için en iyi çözümü sunar.
-    Kolay yönetim ve DDOS koruması ile tüm ihtiyaçlarınızı tek platformda karşılayabilirsiniz.
-  </p>
-  <button class="moreBtn" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Daha Fazla</button>
+<main style="text-align:center;">
+  <h1 class="bigTitle">Güçlü Sunucular</h1>
+  <p>Hız, güvenlik ve performans bir arada.</p>
+  <button class="btn" onclick="scrollToSection('pricing')">Paketleri Gör</button>
 </main>
 
+
 <section id="features">
-  <div>
-    <h2>⚡ Hızlı ve Güvenlik</h2>
-    <p>Sunucularımız en yüksek performanslıdır.</p>
+  <div class="card">
+    <h2>⚡ Ultra Hız</h2>
+    <p>NVMe SSD ile yüksek performans</p>
   </div>
-  <div>
-    <h2>🛡️ DDOS Koruması</h2>
-    <p>Güçlü altyapı ile saldırılara karşı koruma.</p>
+  <div class="card">
+    <h2>🛡️ DDOS Koruma</h2>
+    <p>Gelişmiş saldırı önleme</p>
   </div>
-  <div>
-    <h2>💾 Kolay Yönetim</h2>
-    <p>Panel üzerinden hızlı kontrol ve yönetim.</p>
+  <div class="card">
+    <h2>💻 Kolay Panel</h2>
+    <p>Tek tık yönetim sistemi</p>
   </div>
 </section>
 
 
+<section id="pricing">
+
+  <div class="card">
+    <h2>Nginx</h2>
+    <div class="price"></div>
+    <p>1 GB RAM • 4 GB Disk • %50 CPU</p>
+    <p>🎟️ 1 Davet</p>
+    <button class="btn" onclick="goBuy('nginx')">Satın Al</button>
+  </div>
+
+  <div class="card">
+    <h2>Nano</h2>
+    <div class="price"></div>
+    <p>4 GB RAM • 10 GB Disk • %200 CPU</p>
+    <p>🎟️ 2 Davet</p>
+    <button class="btn" onclick="goBuy('nano')">Satın Al</button>
+  </div>
+
+  <div class="card">
+    <h2>Nano+</h2>
+    <div class="price"></div>
+    <p>6 GB RAM • 15 GB Disk • %200 CPU</p>
+    <p>🎟️ 4 Davet</p>
+    <button class="btn" onclick="goBuy('nanoplus')">Satın Al</button>
+  </div>
+
+  <div class="card" style="border:2px solid gold;">
+    <h2>⭐ Pro (En Popüler)</h2>
+    <div class="price"></div>
+    <p>8 GB RAM • 20 GB Disk • %200 CPU</p>
+    <p>🎟️ 6 Davet</p>
+    <button class="btn" onclick="goBuy('pro')">Satın Al</button>
+  </div>
+
+  <div class="card">
+    <h2>Pro+</h2>
+    <div class="price"></div>
+    <p>12 GB RAM • 25 GB Disk • %200 CPU</p>
+    <p>🎟️ 10 Davet</p>
+    <button class="btn" onclick="goBuy('proplus')">Satın Al</button>
+  </div>
+
+  <div class="card">
+    <h2>Ultimate</h2>
+    <div class="price"></div>
+    <p>14 GB RAM • 30 GB Disk • %200 CPU</p>
+    <p>🎟️ 13 Davet</p>
+    <button class="btn" onclick="goBuy('ultimate')">Satın Al</button>
+  </div>
+
+</section>
+
+
 <div id="chatIcon" onclick="toggleChat()">💬</div>
+
 <div id="chatBox">
-  <p class="botMsg">Merhaba, nasıl yardımcı olabilirim?</p>
-  <button class="optionBtn" onclick="openDiscord()">Yardım</button>
+  <p class="botMsg">Merhaba 👋 Yardım ister misin?</p>
+  <button class="optionBtn" onclick="goDiscord()">Destek Al</button>
 </div>
 
 <script>
@@ -212,22 +261,43 @@ function toggleMenu(){
 }
 
 function goDiscord(){
-  window.open("https://discord.gg/alacahost", "_blank");
+  window.open("https://discord.gg/alacahost","_blank");
 }
 
 function goSite(){
   window.location.href="https://dogansunucum.com/";
 }
 
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+function goBuy(paket){
+  window.open("https://dogansunucum.com/?paket=" + paket, "_blank");
+}
+
+
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+
 
 function toggleChat(){
-  let chat=document.getElementById("chatBox");
-  chat.style.display = chat.style.display=="flex" ? "none" : "flex";
+  let c=document.getElementById("chatBox");
+  c.style.display = c.style.display=="flex" ? "none" : "flex";
 }
 
-function openDiscord(){
-  window.open("https://discord.gg/alacahost", "_blank");
-}
+
+const cards=document.querySelectorAll(".card");
+
+window.addEventListener("scroll",()=>{
+  cards.forEach(card=>{
+    let top=card.getBoundingClientRect().top;
+    if(top<window.innerHeight-50){
+      card.classList.add("show");
+    }
+  });
+});
 </script>
 
 </body>
